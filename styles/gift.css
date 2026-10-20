@@ -1,0 +1,221 @@
+:root {
+    --bg-1: #ff9a9e;
+    --bg-2: #fecfef;
+    --accent: #ff6b6b;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --text-main: #2d3436;
+    --text-light: #636e72;
+    --terminal-bg: #1e1e1e;
+    --terminal-text: #00ff41;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    transition: background 0.8s ease;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 40px 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes popIn {
+    0% {opacity: 0; transform: scale(0.8) translateY(20px);}
+    100% {opacity: 1; transform: scale(1) translateY(0);}
+}
+
+@keyframes shake {
+    0%, 100% {transform: translateX(0);}
+    25% {transform: translateX(-5px) rotate(-1deg);}
+    75% {transform: translateX(5px) rotate(1deg);}
+}
+
+.nervous {
+    animation: shake 0.5s infinite;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.emoji-big {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+color-btn {
+    padding: 20px;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+color-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+color-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn-silver {
+    background: linear-gradient(135deg, silver, grey);
+}
+.btn-blue {
+    background: linear-gradient(135deg, rgb(143, 176, 187), rgb(13, 13, 40));
+}
+.btn-burgundy {
+    background: linear-gradient(135deg, rgb(70, 23, 23)), maroon;
+}
+
+.action-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn:hover {
+    transform: translateY(-30px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-no {
+    background: #dfe6e9;
+    color: #9cb0b8;
+    position: relative;
+    transition: all 0.1s ease;
+}
+
+.btn-submit {
+    background: #2d3436;
+    margin-top: 20px;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.terminal-screen {
+    background: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+    min-height: 300px;
+}
+
+.terminal-screen h2 {
+    color: var(--text-main);
+    text-align: left;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.terminal-line {
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: typeLine 0.3s forwards;
+}
+
+@keyframes typeLine {
+   to {opacity: 1;} 
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--terminal-text);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+@keyframes blink {
+    50% {opacity: 0;}
+}
+
+.confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -20px;
+    opacity: 0;
+    border-radius: 2px;
+}
+
+@keyframes fall {
+    0% {top: -10%; opacity: 1; transform: rotate(0deg) translateX(0);}
+    100% {top: 110%; opacity: 0; transform: rotate(720deg) translateX(100px);}
+}
