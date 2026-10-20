@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get To Know Me! 🌞</title>
+    <meta name="description" content="A fun way to get to know who Kekeletso is.">
+    <meta name="author" content="Kekeletso Nhlapo">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/gettoknowkeke.css">
+    <script src="scripts/gettoknowkeke.js" defer></script>
+</head>
+<body>
+    <div class="deck-container">
+
+        <div class="card active" id="card-0">
+            <div class="profile-frame">
+                <img src="images/profile.jpg" alt="Profile Pic">
+            </div>
+            <div>
+                <h2>Hey there, I'm Keke!</h2>
+                <p>Welcome to my mini digital universe. Get to know me through a quick tour!</p>
+            </div>
+            <button class="btn" onclick="nextCard()">Let's Go!</button>
+            <div class="progress-dots"></div>
+        </div>
+
+        <div class="card" id="card-1">
+            <h2>Where You'll Find Me</h2>
+            <div class="media-box">
+                <img src="images/profile2.jpg" alt="Location">
+            </div>
+            <p>When I'm not crashimg out over a syntax error, I'm usually watching movies in my room, listening to music, or reading. Did I mention watching movies?!</p>
+            <div class="nav-floor">
+                <button class="btn btn-secondary" onclick="prevCard()">Back</button>
+                <button class="btn" onclick="nextCard()">Next</button>
+            </div>
+            <div class="progress-dots"></div>
+        </div>
+
+        <div class="card" id="card-2">
+            <h2>Current Vibe</h2>
+            <div class="media-box">
+                <video src="images/video.jpg" controls muted loop></video>
+            </div>
+            <p>Lately, I've been</p>
+            <div class="nav-floor">
+                <button class="btn btn-secondary" onclick="prevCard()">Back</button>
+                <button class="btn" onclick="nextCard()">Next</button>
+            </div>
+            <div class="progress-dots"></div>
+        </div>
+
+        <div class="card" id="card-3">
+            <h2>Fast Facts</h2>
+            <div class="facts-grid">
+                <div class="fact-item">Obsessed with movies!</div>
+                <div class="fact-item">I love musicals.</div>
+                <div class="fact-item">If you know me, you've heard about my sister.</div>
+                <div class="fact-item">I love dogs.</div>
+            </div>
+            <p>We're officially friends, aren't we?</p>
+            <div class="nav-floor">
+                <button class="btn btn-secondary" onclick="prevCard()">Back</button>
+                <button class="btn" onclick="nextCard()">Finish</button>
+            </div>
+            <div class="progress-dots"></div>
+        </div>
+
+        <div class="card" id="card-4">
+            <div style="font-size: 4rem; animation: float 3s infinite;"></div>
+            <div>
+                <h2>Let's Connect!</h2>
+                <p>Thanks for stopping by!</p>
+            </div>
+            <button class="btn" onclick="resetDeck()">Restart Tour</button>
+            <div class="progress-dots"></div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy;<span id="year"></span> | 🎀 Kekeletso Nhlapo 🎀 | All rights reserved.</p>
+        <p>LastModified: <span id="lastModified"></span></p>  
+    </footer>
+</body>
+    
