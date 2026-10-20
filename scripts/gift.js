@@ -74,14 +74,39 @@ function launchConfetti() {
     }
 }
 
-function submitData() {
-    const subject = encodeURIComponent("A little thank-you 💌");
+function openThankYouNote() {
+    goToScreen(5);
+    launchHeartEmojis();
+}
+
+function notifyProgrammer() {
+    const subject = encodeURIComponent("They said yes to the phone! 📱");
     const body = encodeURIComponent(
-        "Thanks for considering my gift request!\n\n"+
-        "My favorite color: " + selectedColorName + "\n"+
-        "Sent with love from the gift app. 💛"
+        "Hi Keke!\n\nI said yes, and I’d love to buy you a new phone! 💛\n" +
+        "My color pick was " + selectedColorName + ".\n\n" +
+        "Sent from your gift app."
     );
     window.location.href = `mailto:kekeletsobt@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function launchHeartEmojis() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const heartShower = document.getElementById('heart-shower');
+    heartShower.replaceChildren();
+    const heartEmojis = ['💖', '💗', '💕', '💛', '💘'];
+    for (let index = 0; index < 24; index++) {
+        const heart = document.createElement('span');
+        heart.className = 'floating-heart';
+        heart.setAttribute('aria-hidden', 'true');
+        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        heart.style.left = `${Math.random() * 94 + 3}%`;
+        heart.style.fontSize = `${Math.random() * 1.5 + 1.5}rem`;
+        heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        heart.style.animationDelay = `${Math.random()}s`;
+        heartShower.appendChild(heart);
+        setTimeout(() => heart.remove(), 6500);
+    }
 }
 
 function declineGift() {

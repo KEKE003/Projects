@@ -161,6 +161,71 @@ p {
     margin-bottom: 20px;
 }
 
+.note-screen {
+    position: relative;
+    overflow: hidden;
+}
+
+.note-content {
+    position: relative;
+    z-index: 1;
+}
+
+.note-signoff {
+    font-weight: 700;
+}
+
+.kiss-emoji {
+    position: relative;
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 3rem;
+    animation: kiss-blow 1.8s ease-in-out infinite;
+}
+
+.flying-kiss {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    font-size: 1.3rem;
+    animation: kiss-fly 1.8s ease-in-out infinite;
+}
+
+@keyframes kiss-blow {
+    0%, 100% { transform: scale(1) rotate(0); }
+    45% { transform: scale(1.18) rotate(-8deg); }
+    65% { transform: scale(1.08) rotate(5deg); }
+}
+
+@keyframes kiss-fly {
+    0%, 35% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+    55% { opacity: 1; }
+    100% { opacity: 0; transform: translate(34px, -28px) scale(1.2); }
+}
+
+.heart-shower {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -48px;
+    animation-name: heart-float;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.15));
+}
+
+@keyframes heart-float {
+    0% { opacity: 0; transform: translateY(0) rotate(-10deg); }
+    12% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-110vh) rotate(20deg); }
+}
+
 .btn-no {
     background: #dfe6e9;
     color: #9cb0b8;
@@ -260,5 +325,12 @@ footer p {
     .color-btn {
         padding: 16px 6px;
         font-size: 0.95rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kiss-emoji,
+    .flying-kiss {
+        animation: none;
     }
 }

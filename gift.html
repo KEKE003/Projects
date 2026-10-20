@@ -53,6 +53,9 @@
             <p>I really do appreciate you so much! Feel free to also ask me for a favor if you ever need one!</p>
             <p style="font-size: 0.9rem; color: #b2bec3; margin-top: 20px;">I'm not joking by the way, I actually need a new phone.</p>
 
+            <p>Want to let the programmer know? 💌</p>
+            <button class="action-btn btn-submit" onclick="notifyProgrammer()">Email the programmer 📧</button>
+
             <p>Check the latest listings and prices on Takealot:</p>
             <a class="action-btn store-link" href="https://www.takealot.com/all?query=iPhone%2017%20Pro" target="_blank" rel="noopener noreferrer">iPhone 17 Pro prices 🛍️</a>
             <a class="action-btn store-link" href="https://www.takealot.com/all?query=iPhone%2018%20Pro" target="_blank" rel="noopener noreferrer">iPhone 18 Pro prices 🛍️</a>
@@ -60,7 +63,8 @@
             <p>Delivery address 📦</p>
             <address class="delivery-address">466 Kameeldoring Street<br>Bakenpark<br>Bethlehem, 9701</address>
 
-            <button class="action-btn btn-submit" onclick="submitData()">Send a thank-you note 💌</button>
+            <p>Once you’ve placed the order, open your thank-you note 💛</p>
+            <button class="action-btn btn-submit" onclick="openThankYouNote()">Open this thank-you note 💌</button>
             <button class="action-btn" onclick="resetApp()" style="margin-top: 20px; background: #2d3436;">Restart 🔄</button>
         </div>
 
@@ -71,12 +75,17 @@
             <button class="action-btn" onclick="resetApp()">Back to the beginning ↩️</button>
         </div>
 
-        <div id="screen-5" class="screen" style="background: transparent; box-shadow: none; padding: 0;">
-            <div class="terminal-screen">
-                <h2>kekeletsobt@gmail.com</h2>
-                <div id="terminal-output"></div>
+        <div id="screen-5" class="screen note-screen">
+            <div id="heart-shower" class="heart-shower" aria-hidden="true"></div>
+            <div class="note-content">
+                <span class="emoji-big" aria-hidden="true">💖</span>
+                <h1>From my heart to yours</h1>
+                <p>Gio, thank you so much for this incredibly thoughtful gift. Your generosity means more to me than I can put into words. Every time I use my new phone to take a picture or FaceTime you, I’ll be reminded of your kindness and of how lucky I am to have you in my life.</p>
+                <p>I’m so grateful for you, for the memories we share, and for all the ones still to come. Thank you for making me feel so loved. 🥹</p>
+                <p class="note-signoff">With all my love,<br>Keke 💛</p>
+                <button class="action-btn" onclick="resetApp()">Back to the beginning ↩️</button>
+                <span class="kiss-emoji" role="img" aria-label="Blowing a kiss">😘<span class="flying-kiss" aria-hidden="true">💋</span></span>
             </div>
-
         </div>
     </div>
     <footer>
