@@ -10,7 +10,62 @@ const currentYearSpan = document.getElementById("year");
     }
 
 let selectedColorName = "";
+let selectedPhoneModel = "";
 let noButtonDodgeCount = 0;
+const phoneCatalog = {
+    iphone17pro: { label: "iPhone 17 Pro", searchTerm: "Apple iPhone 17 Pro" },
+    iphone18pro: { label: "iPhone 18 Pro", searchTerm: "Apple iPhone 18 Pro" }
+};
+
+function renderPhoneIllustrations() {
+    const colors = { silver: "#c9cbd0", blue: "#426b95", burgundy: "#74263e" };
+    const color = colors[selectedColorName] || colors.silver;
+    document.getElementById("phone-art-17").replaceChildren(createPhoneIllustration("iphone17pro", color));
+    document.getElementById("phone-art-18").replaceChildren(createPhoneIllustration("iphone18pro", color));
+}
+
+function createPhoneIllustration(model, color) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNamespace, "svg");
+    svg.setAttribute("viewBox", "0 0 160 190");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", `${phoneCatalog[model].label} preview in ${selectedColorName || "silver"}`);
+
+    const phone = document.createElementNS(svgNamespace, "rect");
+    phone.setAttribute("x", "30");
+    phone.setAttribute("y", "5");
+    phone.setAttribute("width", "100");
+    phone.setAttribute("height", "180");
+    phone.setAttribute("rx", "20");
+    phone.setAttribute("fill", color);
+    phone.setAttribute("stroke", "#25272a");
+    phone.setAttribute("stroke-width", "3");
+    svg.appendChild(phone);
+
+    const cameraPlate = document.createElementNS(svgNamespace, "rect");
+    cameraPlate.setAttribute("x", model === "iphone17pro" ? "39" : "43");
+    cameraPlate.setAttribute("y", "15");
+    cameraPlate.setAttribute("width", model === "iphone17pro" ? "66" : "58");
+    cameraPlate.setAttribute("height", "67");
+    cameraPlate.setAttribute("rx", "14");
+    cameraPlate.setAttribute("fill", "#292b30");
+    svg.appendChild(cameraPlate);
+
+    [[54, 32], [84, 32], [54, 61]].forEach(([x, y]) => {
+        const lens = document.createElementNS(svgNamespace, "circle");
+        lens.setAttribute("cx", String(x));
+        lens.setAttribute("cy", String(y));
+        lens.setAttribute("r", "10");
+        lens.setAttribute("fill", "#13161a");
+        lens.setAttribute("stroke", "#98a3ae");
+        lens.setAttribute("stroke-width", "2");
+        svg.appendChild(lens);
+    });
+    return svg;
+}
+
+renderPhoneIllustrations();
+
 function goToScreen(num) {
     document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
     document.getElementById(`screen-${num}`)?.classList.add('active');
@@ -40,8 +95,32 @@ function pickColor(name) {
     };
     document.getElementById('color-compliment').innerText = `${prettyNames[name]} is an amazing choice!`;
     document.getElementById('chosen-color-text').innerText = prettyNames[name];
+    document.getElementById('phone-color-name').innerText = prettyNames[name];
+    renderPhoneIllustrations();
 
     goToScreen(3);
+}
+
+function choosePhone(model) {
+    const phone = phoneCatalog[model];
+    if (!phone || !selectedColorName) return;
+
+    selectedPhoneModel = model;
+    Object.keys(phoneCatalog).forEach(phoneKey => {
+        const option = document.getElementById(`phone-option-${phoneKey === "iphone17pro" ? "17" : "18"}`);
+        const isSelected = phoneKey === model;
+        option.classList.toggle("selected", isSelected);
+        option.setAttribute("aria-pressed", String(isSelected));
+    });
+
+    const productUrl = new URL("https://www.takealot.com/all");
+    productUrl.searchParams.set("query", phone.searchTerm);
+    const buyLink = document.getElementById("takealot-buy-link");
+    buyLink.href = productUrl.toString();
+    buyLink.hidden = false;
+    document.getElementById("phone-selection-summary").textContent =
+        `Selected ${phone.label} in ${selectedColorName}. Takealot will show today's price and available finishes.`;
+    document.getElementById("notify-button").disabled = false;
 }
 
 function runAway() {
@@ -90,11 +169,15 @@ function openThankYouNote() {
 }
 
 function notifyProgrammer() {
-    const subject = encodeURIComponent("They said yes to the phone! 📱");
+    const phone = phoneCatalog[selectedPhoneModel];
+    if (!phone) return;
+
+    const subject = encodeURIComponent("Phone gift selection 💌");
     const body = encodeURIComponent(
-        "Hi Keke!\n\nI said yes, and I’d love to buy you a new phone! 💛\n" +
-        "My color pick was " + selectedColorName + ".\n\n" +
-        "Sent from your gift app."
+        "Hi Keke!\n\nHere is my phone selection:\n" +
+        `Model: ${phone.label}\nColor choice: ${selectedColorName}\n\n` +
+        "I will check the live listing and complete any billing and payment securely on Takealot. " +
+        "This message records my selection and is not an order or payment receipt."
     );
     window.location.href = `mailto:kekeletsobt@gmail.com?subject=${subject}&body=${body}`;
 }
@@ -128,7 +211,20 @@ function resetApp() {
     document.documentElement.style.setProperty('--bg-2', '#fecfef');
     document.documentElement.style.setProperty('--accent', '#ff6b6b');
     selectedColorName = "";
+    selectedPhoneModel = "";
     noButtonDodgeCount = 0;
+
+    document.querySelectorAll(".phone-option").forEach(option => {
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+    });
+    document.getElementById("takealot-buy-link").hidden = true;
+    document.getElementById("takealot-buy-link").href = "https://www.takealot.com/";
+    document.getElementById("notify-button").disabled = true;
+    document.getElementById("phone-selection-summary").textContent =
+        "Choose a model to prepare your Takealot link and selection email.";
+    document.getElementById("phone-color-name").textContent = "not selected";
+    renderPhoneIllustrations();
 
     const btn = document.getElementById('btn-no');
     btn.style.position = 'relative';

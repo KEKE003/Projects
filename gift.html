@@ -53,19 +53,42 @@
             <p>I really do appreciate you so much! Feel free to also ask me for a favor if you ever need one!</p>
             <p style="font-size: 0.9rem; color: #b2bec3; margin-top: 20px;">I'm not joking by the way, I actually need a new phone.</p>
 
-            <p>Want to let Keke know? 💌</p>
-            <button class="action-btn btn-submit" onclick="notifyProgrammer()">Email Keke 📧</button>
+            <p class="notice-text">Keke will only be notified of your selection if you choose to send the email on the next screen.</p>
 
-            <p>Check the latest listings and prices on Takealot:</p>
-            <a class="action-btn store-link" href="https://www.takealot.com/all?query=Apple%20iPhone%2017%20Pro" target="_blank" rel="noopener noreferrer">Shop Apple iPhone 17 Pro listings 🛍️</a>
-            <a class="action-btn store-link" href="https://www.takealot.com/all?query=Apple%20iPhone%2018%20Pro" target="_blank" rel="noopener noreferrer">Shop Apple iPhone 18 Pro listings 🛍️</a>
+            <button class="action-btn" onclick="goToScreen(7)">Choose a phone 📱</button>
 
             <p>Delivery address 📦</p>
             <address class="delivery-address">466 Kameeldoring Street<br>Bakenpark<br>Bethlehem, 9701</address>
 
-            <p>Once you’ve placed the order, open your thank you note 💛</p>
-            <button class="action-btn btn-submit" onclick="openThankYouNote()">Open this thank-you note 💌</button>
             <button class="action-btn" onclick="resetApp()" style="margin-top: 20px; background: #2d3436;">Restart 🔄</button>
+        </div>
+
+        <div id="screen-7" class="screen phone-picker">
+            <span class="emoji-big" aria-hidden="true">📱</span>
+            <h1>Choose your phone</h1>
+            <p>Your color pick: <strong id="phone-color-name">not selected</strong></p>
+            <p class="notice-text">Illustrations use your chosen color. Confirm actual color availability and today's price on Takealot.</p>
+
+            <div class="phone-options">
+                <button class="phone-option" id="phone-option-17" type="button" onclick="choosePhone('iphone17pro')" aria-pressed="false">
+                    <span class="phone-art" id="phone-art-17" aria-hidden="true"></span>
+                    <span class="phone-option-name">iPhone 17 Pro</span>
+                    <span class="phone-option-detail">View current Takealot price</span>
+                </button>
+                <button class="phone-option" id="phone-option-18" type="button" onclick="choosePhone('iphone18pro')" aria-pressed="false">
+                    <span class="phone-art" id="phone-art-18" aria-hidden="true"></span>
+                    <span class="phone-option-name">iPhone 18 Pro</span>
+                    <span class="phone-option-detail">View current Takealot price</span>
+                </button>
+            </div>
+
+            <p id="phone-selection-summary" class="selection-summary" aria-live="polite">Choose a model to prepare your Takealot link and selection email.</p>
+            <a id="takealot-buy-link" class="action-btn store-link" href="https://www.takealot.com/" target="_blank" rel="noopener noreferrer" hidden>View selected phone on Takealot 🛍️</a>
+            <p class="notice-text">Add your delivery and billing details, and pay securely on Takealot. This page never collects payment information.</p>
+            <button class="action-btn btn-submit" id="notify-button" type="button" onclick="notifyProgrammer()" disabled>Email Keke my selection 📧</button>
+            <p class="notice-text">Your email app will open with the selected model and color. Keke is notified only if you send it; it is not an order receipt.</p>
+            <button class="action-btn" type="button" onclick="openThankYouNote()">Open the thank-you note after ordering 💌</button>
+            <button class="action-btn" type="button" onclick="goToScreen(4)">Back ↩️</button>
         </div>
 
         <div id="screen-6" class="screen">
