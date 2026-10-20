@@ -16,45 +16,59 @@
 </head>
 <body>
     <div class="app-container">
-        <div id="screen-1" class="screen-active">
-            <span class="emoji-big nervous"></span>
+        <div id="screen-1" class="screen active">
+            <span class="emoji-big nervous" aria-hidden="true">🥺</span>
             <h1>Ummm... hey</h1>
             <p>Since I never got to ask you for that HUGE favor, I figured I can at least ask for a gift. </p>
             <p>Before you start, just a reminder that I respect you and you can say 'NO'.</p>
-            <button class="action-btn" onclick="goToScreen(2)">Okay, I'm listening...</button>
+            <button class="action-btn" onclick="goToScreen(2)">Okay, I'm listening... 👀</button>
         </div>
 
         <div id="screen-2" class="screen">
-            <span class="emoji-big"></span>
+            <span class="emoji-big" aria-hidden="true">🎨</span>
             <h2>First thing's first</h2>
             <p>What color do you think looks good on me? (Hint: My favorite color)</p>
             <div class="color-grid">
-                <button class="color-btn btn-silver" onclick="pickColor('silver')"></button>"
-                <button class="color-btn btn-blue" onclick="pickColor('blue')"></button>
-                <button class="color-btn btn-burgundy" onclick="pickColor('burgundy')"></button>
+                <button class="color-btn btn-silver" onclick="pickColor('silver')" aria-label="Silver">Silver ✨</button>
+                <button class="color-btn btn-blue" onclick="pickColor('blue')" aria-label="Blue">Blue 💙</button>
+                <button class="color-btn btn-burgundy" onclick="pickColor('burgundy')" aria-label="Burgundy">Burgundy 🍷</button>
             </div>
         </div>
 
-        <div id="screen-3" class="sreen">
-            <span class="emoji-big"></span>
+        <div id="screen-3" class="screen">
+            <span class="emoji-big" aria-hidden="true">📱</span>
             <h2 id="color-compliment">Great Choice!</h2>
             <p id="guilt-trip">You know what else would look good on me??? A new phone! Specifically the one in <strong id="chosen-color-text"> this color.</strong></p>
             <p>My phone has been giving me problems lately, and since you want my pictures I really need a new phone... Also wouldn't it be nice to face time each other?! </p>
             <p>I wanted a creative way to ask you, so I figured this would be a fun way of asking(I wanted to show off my skills). Gio will you please buy me a new phone? Pretty please?</p>
 
-            <button class="action-btn" onclick="goToScreen(4)">Keke, I would love to!</button>
-            <button class="action-btn" onclick="goToScree(4)">Let me think about it.</button>
-            <button class="action-btn btn-no" id="btn-no" onmouseover="runAway()" onclick="runAway()">No</button>
+            <button class="action-btn" onclick="goToScreen(4)">Keke, I would love to! 💖</button>
+            <button class="action-btn" onclick="goToScreen(6)">Let me think about it 🤔</button>
+            <button class="action-btn btn-no" id="btn-no" onmouseover="runAway()" onclick="declineGift()">No thanks</button>
         </div>
 
         <div id="screen-4" class="screen">
-            <span class="emoji-big"></span>
+            <span class="emoji-big" aria-hidden="true">🎉</span>
             <h1>YAYYYYY!!!</h1>
             <p>I really do appreciate you so much! Feel free to also ask me for a favor if you ever need one!</p>
             <p style="font-size: 0.9rem; color: #b2bec3; margin-top: 20px;">I'm not joking by the way, I actually need a new phone.</p>
 
-            <button class="action-btn btn-submit" onclick="executeCommand()">[SUBMIT RECEIPT TO PROGRAMMER]</button>
-            <button class="action-btn" onclick="resetApp()" style="margin-top: 20px; background: #2d3436;">Restart</button>
+            <p>Check the latest listings and prices on Takealot:</p>
+            <a class="action-btn store-link" href="https://www.takealot.com/all?query=iPhone%2017%20Pro" target="_blank" rel="noopener noreferrer">iPhone 17 Pro prices 🛍️</a>
+            <a class="action-btn store-link" href="https://www.takealot.com/all?query=iPhone%2018%20Pro" target="_blank" rel="noopener noreferrer">iPhone 18 Pro prices 🛍️</a>
+
+            <p>Delivery address 📦</p>
+            <address class="delivery-address">466 Kameeldoring Street<br>Bakenpark<br>Bethlehem, 9701</address>
+
+            <button class="action-btn btn-submit" onclick="submitData()">Send a thank-you note 💌</button>
+            <button class="action-btn" onclick="resetApp()" style="margin-top: 20px; background: #2d3436;">Restart 🔄</button>
+        </div>
+
+        <div id="screen-6" class="screen">
+            <span class="emoji-big" aria-hidden="true">🌷</span>
+            <h2>No pressure at all!</h2>
+            <p>Thanks for hearing me out. Take all the time you need, and either answer is completely okay. 💛</p>
+            <button class="action-btn" onclick="resetApp()">Back to the beginning ↩️</button>
         </div>
 
         <div id="screen-5" class="screen" style="background: transparent; box-shadow: none; padding: 0;">
