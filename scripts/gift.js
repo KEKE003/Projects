@@ -10,6 +10,7 @@ const currentYearSpan = document.getElementById("year");
     }
 
 let selectedColorName = "";
+let noButtonDodgeCount = 0;
 function goToScreen(num) {
     document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
     document.getElementById(`screen-${num}`)?.classList.add('active');
@@ -44,6 +45,9 @@ function pickColor(name) {
 }
 
 function runAway() {
+    if (noButtonDodgeCount >= 10) return;
+    noButtonDodgeCount++;
+
     const btn = document.getElementById('btn-no');
     const maxX = Math.max(0, window.innerWidth - btn.offsetWidth);
     const maxY = Math.max(0, window.innerHeight - btn.offsetHeight);
@@ -53,9 +57,15 @@ function runAway() {
     btn.style.position = 'fixed';
     btn.style.left = `${randomX}px`;
     btn.style.top = `${randomY}px`;
-    btn.innerText = "Oops... wrong button! 🙈";
+    btn.innerText = noButtonDodgeCount === 10 ? "You caught me! No thanks" : "Oops... wrong button! 🙈";
 
-    setTimeout(() => {btn.innerText = "No";}, 800);
+    setTimeout(() => { btn.innerText = "No thanks"; }, 800);
+}
+
+function runAwayOnTouch(event) {
+    if (noButtonDodgeCount >= 10) return;
+    event.preventDefault();
+    runAway();
 }
 
 function launchConfetti() {
@@ -118,6 +128,7 @@ function resetApp() {
     document.documentElement.style.setProperty('--bg-2', '#fecfef');
     document.documentElement.style.setProperty('--accent', '#ff6b6b');
     selectedColorName = "";
+    noButtonDodgeCount = 0;
 
     const btn = document.getElementById('btn-no');
     btn.style.position = 'relative';
