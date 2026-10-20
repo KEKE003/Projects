@@ -14,7 +14,7 @@ const totalCards = 5;
 
 document.querySelectorAll('.progress-dots').forEach((container) => {
     for (let i=0; i<totalCards; i++) {
-        const dot = document.creatElement('div');
+        const dot = document.createElement('div');
         dot.classList.add('dot');
         if(i === currentIdx) dot.classList.add('active');
         container.appendChild(dot);
