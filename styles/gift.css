@@ -245,9 +245,190 @@ p {
     overflow: hidden;
 }
 
+.scroll-bottle {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 350px;
+    border: 0;
+    background: transparent;
+    color: var(--text-main);
+    font: inherit;
+    cursor: pointer;
+}
+
+.scroll-bottle:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 20px;
+}
+
+.bottle-neck {
+    position: absolute;
+    z-index: 1;
+    top: 39px;
+    left: 50%;
+    width: 52px;
+    height: 66px;
+    transform: translateX(-50%);
+    border: 4px solid rgba(45, 101, 76, 0.8);
+    border-bottom: 0;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(90deg, rgba(116, 183, 145, 0.45), rgba(226, 255, 225, 0.6), rgba(76, 143, 105, 0.45));
+}
+
+.bottle-cork {
+    position: absolute;
+    z-index: 3;
+    top: 19px;
+    left: 50%;
+    width: 40px;
+    height: 29px;
+    transform: translateX(-50%);
+    border: 2px solid #81502d;
+    border-radius: 8px 8px 4px 4px;
+    background: repeating-linear-gradient(90deg, #c28a52 0 5px, #d6a66e 5px 9px);
+    box-shadow: 0 3px 5px rgba(49, 31, 18, 0.25);
+}
+
+.bottle-body {
+    position: absolute;
+    z-index: 2;
+    top: 82px;
+    left: 50%;
+    display: grid;
+    width: 132px;
+    height: 205px;
+    transform: translateX(-50%);
+    place-items: center;
+    border: 4px solid rgba(45, 101, 76, 0.8);
+    border-radius: 38% 38% 30% 30% / 17% 17% 14% 14%;
+    background: linear-gradient(100deg, rgba(96, 170, 124, 0.38), rgba(231, 255, 223, 0.58) 42%, rgba(94, 156, 115, 0.42));
+    box-shadow: inset 8px 0 12px rgba(255, 255, 255, 0.45), 0 12px 18px rgba(49, 72, 55, 0.17);
+}
+
+.bottle-scroll {
+    width: 79px;
+    height: 119px;
+    border: 2px solid #a56c34;
+    border-radius: 48% / 10%;
+    background: linear-gradient(90deg, #d6ad71, #fae5b7 18%, #f3d9a5 82%, #bd8247);
+    box-shadow: inset 9px 0 8px rgba(91, 49, 19, 0.24), inset -7px 0 7px rgba(91, 49, 19, 0.2);
+}
+
+.bottle-bow {
+    position: absolute;
+    z-index: 4;
+    top: 113px;
+    left: calc(50% + 46px);
+    width: 24px;
+    height: 20px;
+    border: 3px solid #9a2943;
+    border-radius: 50%;
+    background: #d84f67;
+    box-shadow: 0 2px 4px rgba(49, 31, 18, 0.25);
+}
+
+.bottle-bow::before,
+.bottle-bow::after {
+    position: absolute;
+    top: -8px;
+    width: 27px;
+    height: 25px;
+    border: 3px solid #9a2943;
+    border-radius: 70% 20% 70% 20%;
+    background: #ee7890;
+    content: "";
+}
+
+.bottle-bow::before {
+    right: 12px;
+    transform: rotate(20deg);
+}
+
+.bottle-bow::after {
+    left: 12px;
+    transform: scaleX(-1) rotate(20deg);
+}
+
+.bottle-bow span {
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    left: 6px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #9a2943;
+}
+
+.bottle-prompt {
+    position: absolute;
+    top: 300px;
+    left: 0;
+    width: 100%;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.scroll-bottle:not([hidden]) {
+    animation: bottle-arrive 0.7s ease-out both;
+}
+
+@keyframes bottle-arrive {
+    from { opacity: 0; transform: translateY(12px) scale(0.94); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 .note-content {
     position: relative;
     z-index: 1;
+    padding: 28px 22px;
+    border: 9px solid transparent;
+    border-radius: 12px 5px 15px 7px;
+    background: linear-gradient(145deg, #f9e7c2, #efd19a 58%, #e5bd7d) padding-box,
+        linear-gradient(135deg, #4b2110, #b26327 24%, #713511 48%, #c17a36 72%, #4b2110) border-box;
+    box-shadow: inset 0 0 18px 6px rgba(91, 39, 12, 0.48), 0 10px 24px rgba(49, 31, 18, 0.25);
+    color: #462b1a;
+    text-align: left;
+}
+
+.note-content[hidden],
+.scroll-bottle[hidden] {
+    display: none;
+}
+
+.note-content.is-visible {
+    animation: scroll-unfurl 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.note-content h1,
+.note-content p {
+    color: #462b1a;
+}
+
+.note-content .emoji-big,
+.note-content .kiss-emoji {
+    text-align: center;
+}
+
+.note-content .action-btn {
+    text-align: center;
+}
+
+@keyframes scroll-unfurl {
+    from {
+        opacity: 0;
+        clip-path: inset(0 0 92% 0);
+        transform: translateY(-12px) scaleY(0.15);
+        transform-origin: top;
+    }
+    to {
+        opacity: 1;
+        clip-path: inset(0);
+        transform: translateY(0) scaleY(1);
+    }
 }
 
 .note-signoff {
@@ -413,7 +594,9 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
     .kiss-emoji,
-    .flying-kiss {
+    .flying-kiss,
+    .scroll-bottle:not([hidden]),
+    .note-content.is-visible {
         animation: none;
     }
 }

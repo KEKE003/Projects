@@ -20,7 +20,7 @@
             <span class="emoji-big nervous" aria-hidden="true">🥺</span>
             <h1>Ummm... hey</h1>
             <p>Since I never got to ask you for that HUGE favor, I figured I can at least ask for a gift. </p>
-            <p>Before you start, just a reminder that I respect you and you can say 'NO'.</p>
+            <p>Just a reminder, you can say 'NO'.</p>
             <button class="action-btn" onclick="goToScreen(2)">Okay, I'm listening... 👀</button>
         </div>
 
@@ -50,7 +50,7 @@
         <div id="screen-4" class="screen">
             <span class="emoji-big" aria-hidden="true">🎉</span>
             <h1>YAYYYYY!!!</h1>
-            <p>I really do appreciate you so much! Feel free to also ask me for a favor if you ever need one!</p>
+            <p>I appreciate you so much! Feel free to also ask me for a favor if you ever need one!</p>
             <p style="font-size: 0.9rem; color: #b2bec3; margin-top: 20px;">I'm not joking by the way, I actually need a new phone.</p>
 
             <p class="notice-text">Keke will only be notified of your selection if you choose to send the email on the next screen.</p>
@@ -58,7 +58,7 @@
             <button class="action-btn" onclick="goToScreen(7)">Choose a phone 📱</button>
 
             <p>Delivery address 📦</p>
-            <address class="delivery-address">466 Kameeldoring Street<br>Bakenpark<br>Bethlehem, 9701</address>
+            <address class="delivery-address">466 Kameeldoring Street<br>Bakenpark<br>Bethlehem, Free State, 9701</address>
 
             <button class="action-btn" onclick="resetApp()" style="margin-top: 20px; background: #2d3436;">Restart 🔄</button>
         </div>
@@ -83,7 +83,7 @@
             </div>
 
             <p id="phone-selection-summary" class="selection-summary" aria-live="polite">Choose a model to prepare your Takealot link and selection email.</p>
-            <a id="takealot-buy-link" class="action-btn store-link" href="https://www.takealot.com/" target="_blank" rel="noopener noreferrer" hidden>View selected phone on Takealot 🛍️</a>
+            <a id="takealot-buy-link" class="action-btn store-link" href="https://www.takealot.com/" target="_blank" rel="noopener noreferrer" onclick="confirmTakealotSearch(event)" hidden>View selected phone on Takealot 🛍️</a>
             <p class="notice-text">Add your delivery and billing details, and pay securely on Takealot. This page never collects payment information.</p>
             <button class="action-btn btn-submit" id="notify-button" type="button" onclick="notifyProgrammer()" disabled>Email Keke my selection 📧</button>
             <p class="notice-text">Your email app will open with the selected model and color. Keke is notified only if you send it; it is not an order receipt.</p>
@@ -100,7 +100,14 @@
 
         <div id="screen-5" class="screen note-screen">
             <div id="heart-shower" class="heart-shower" aria-hidden="true"></div>
-            <div class="note-content">
+            <button id="scroll-bottle" class="scroll-bottle" type="button" aria-expanded="false" aria-controls="thank-you-scroll" onclick="unwrapThankYouNote()">
+                <span class="bottle-cork" aria-hidden="true"></span>
+                <span class="bottle-neck" aria-hidden="true"></span>
+                <span class="bottle-body" aria-hidden="true"><span class="bottle-scroll"></span></span>
+                <span class="bottle-bow" aria-hidden="true"><span></span></span>
+                <span class="bottle-prompt">Tap the bottle to unwrap your note 💌</span>
+            </button>
+            <div id="thank-you-scroll" class="note-content" aria-hidden="true" hidden>
                 <span class="emoji-big" aria-hidden="true">💖</span>
                 <h1>From my heart to yours</h1>
                 <p>Giovanni Antonio Frugone, thank you so much for this incredibly thoughtful gift. Your generosity means more to me than I can put into words. Every time I use my new phone I’ll be reminded of your kindness and hard work, but most importantly YOU.</p>

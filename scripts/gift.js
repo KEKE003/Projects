@@ -12,6 +12,7 @@ const currentYearSpan = document.getElementById("year");
 let selectedColorName = "";
 let selectedPhoneModel = "";
 let noButtonDodgeCount = 0;
+let bottleHideTimeout;
 const phoneCatalog = {
     iphone17pro: { label: "iPhone 17 Pro", searchTerm: "Apple iPhone 17 Pro" },
     iphone18pro: { label: "iPhone 18 Pro", searchTerm: "Apple iPhone 18 Pro" }
@@ -123,6 +124,20 @@ function choosePhone(model) {
     document.getElementById("notify-button").disabled = false;
 }
 
+function confirmTakealotSearch(event) {
+    const phone = phoneCatalog[selectedPhoneModel];
+    if (!phone || !selectedColorName) {
+        event.preventDefault();
+        return;
+    }
+
+    const color = selectedColorName.charAt(0).toUpperCase() + selectedColorName.slice(1);
+    const continueToTakealot = window.confirm(
+        `On Takealot, search for ${phone.label} in ${color}. Continue?`
+    );
+    if (!continueToTakealot) event.preventDefault();
+}
+
 function runAway() {
     if (noButtonDodgeCount >= 10) return;
     noButtonDodgeCount++;
@@ -166,6 +181,19 @@ function launchConfetti() {
 function openThankYouNote() {
     goToScreen(5);
     launchHeartEmojis();
+}
+
+function unwrapThankYouNote() {
+    const bottle = document.getElementById("scroll-bottle");
+    const scroll = document.getElementById("thank-you-scroll");
+    if (bottle.getAttribute("aria-expanded") === "true") return;
+
+    bottle.setAttribute("aria-expanded", "true");
+    scroll.setAttribute("aria-hidden", "false");
+    scroll.hidden = false;
+    document.getElementById("screen-5").classList.add("is-unwrapped");
+    requestAnimationFrame(() => scroll.classList.add("is-visible"));
+    bottleHideTimeout = setTimeout(() => { bottle.hidden = true; }, 650);
 }
 
 function notifyProgrammer() {
@@ -213,6 +241,15 @@ function resetApp() {
     selectedColorName = "";
     selectedPhoneModel = "";
     noButtonDodgeCount = 0;
+    clearTimeout(bottleHideTimeout);
+
+    const scrollBottle = document.getElementById("scroll-bottle");
+    scrollBottle.hidden = false;
+    scrollBottle.setAttribute("aria-expanded", "false");
+    document.getElementById("thank-you-scroll").hidden = true;
+    document.getElementById("thank-you-scroll").setAttribute("aria-hidden", "true");
+    document.getElementById("thank-you-scroll").classList.remove("is-visible");
+    document.getElementById("screen-5").classList.remove("is-unwrapped");
 
     document.querySelectorAll(".phone-option").forEach(option => {
         option.classList.remove("selected");
