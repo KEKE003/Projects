@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7e5dc">
+    <title>Really? 🙄</title>
+    <meta name="description" content="A playful interactive app that encourages better communication.">
+    <meta name="author" content="Kekeletso Nhlapo">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/idc.css">
+    <script src="scripts/idc.js" defer></script>
+</head>
+<body>
+    <main>
+        <section id="intro" aria-labelledby="intro-title">
+            <span class="face" aria-hidden="true">🙄</span>
+            <h1 id="intro-title">REALLY?</h1>
+            <p>Well... let's have a little chat about communication. 😅</p>
+            <div class="actions">
+                <button id="start-button" type="button">Okay, tell me 💬</button>
+            </div>
+        </section>
+
+        <section id="message" aria-labelledby="message-title" hidden>
+            <span class="face" aria-hidden="true">👻</span>
+            <h2 id="message-title">A little communication check-in</h2>
+            <p>I’ve been feeling a bit disconnected. When messages go unanswered for a long period of time, I’m not sure where we stand. I’d rather talk it through than make assumptions—could we both try to communicate a little more clearly?</p>
+            <p>Do you feel bad about it? (willing to work on communicating better)</p>
+            <div class="runaway-area" id="runaway-area">
+                <button id="yes-button" type="button" aria-describedby="runaway-progress">Yes, I’ll try 💛</button>
+                <button id="no-button" class="secondary" type="button">No</button>
+            </div>
+            <p id="runaway-progress" class="progress" aria-live="polite"></p>
+        </section>
+
+        <section id="meter" aria-labelledby="meter-title" hidden>
+            <span class="face" aria-hidden="true">💌</span>
+            <h2 id="meter-title">How much do you think I care?</h2>
+            <p>Move the meter and see what happens.</p>
+            <div class="meter-wrap">
+                <input id="care-meter" type="range" min="0" max="100" value="50" aria-label="How much do you think I care?">
+                <div class="meter-labels" aria-hidden="true"><span>A little</span><span>A lot</span></div>
+            </div>
+            <p id="meter-message" class="meter-message" aria-live="polite">Pick a spot on the meter 👀</p>
+            <div class="actions">
+                <button id="talk-button" class="secondary" type="button">Let's talk it out 🤝</button>
+            </div>
+        </section>
+
+        <section id="ending" aria-labelledby="ending-title" hidden>
+            <span class="face end-face" aria-hidden="true">🫶</span>
+            <h2 id="ending-title">Thanks for hearing me</h2>
+            <p>Small honest conversations can make a big difference. Let’s keep showing up for each other.</p>
+            <div class="actions">
+                <button id="restart-button" type="button">Start again ↻</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy;<span id="year"></span> | 🎀 Kekeletso Nhlapo 🎀 | All rights reserved.</p>
+        <p>LastModified: <span id="lastModified"></span></p>  
+    </footer>
+</body>
+</html>

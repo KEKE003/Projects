@@ -1,0 +1,123 @@
+:root {
+            color-scheme: light;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            color: #342d35;
+            background: #f7e5dc;
+            font-synthesis: none;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+            margin: 0;
+            padding: 24px;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(ellipse at 10% 15%, rgba(255, 255, 255, 0.8), transparent 35%),
+                linear-gradient(145deg, #f7e5dc, #e9dafa);
+        }
+
+        main {
+            width: min(100%, 540px);
+            padding: clamp(28px, 7vw, 52px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 24px 70px rgba(65, 42, 65, 0.14);
+            text-align: center;
+        }
+
+        [hidden] { display: none !important; }
+
+        .face {
+            display: block;
+            margin-bottom: 12px;
+            font-size: clamp(4rem, 16vw, 6rem);
+            line-height: 1.1;
+            animation: bob 2.2s ease-in-out infinite;
+        }
+
+        h1 { margin: 0 0 12px; font-size: clamp(2.1rem, 9vw, 3.2rem); }
+        h2 { margin: 0 0 14px; font-size: clamp(1.55rem, 6vw, 2rem); }
+        p { margin: 0 auto 20px; max-width: 42ch; color: #625964; line-height: 1.65; }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        button {
+            min-height: 48px;
+            padding: 12px 22px;
+            border: 0;
+            border-radius: 999px;
+            background: #674b80;
+            color: white;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        button:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(65, 42, 65, 0.2); }
+        button:focus-visible, input:focus-visible { outline: 3px solid #df8b5e; outline-offset: 4px; }
+        button.secondary { background: #ece5f2; color: #493854; }
+
+        .runaway-area {
+            position: relative;
+            min-height: 130px;
+            margin-top: 24px;
+        }
+
+        #yes-button {
+            position: absolute;
+            top: 50%;
+            left: 7%;
+            transform: translateY(-50%);
+        }
+
+        #no-button { position: absolute; top: 50%; right: 7%; transform: translateY(-50%); }
+        #no-button:hover { transform: translateY(calc(-50% - 2px)); }
+
+        .progress {
+            min-height: 1.6em;
+            margin: 10px 0 0;
+            color: #74558b;
+            font-size: 0.95rem;
+            font-weight: 650;
+        }
+
+        .meter-wrap { margin: 28px 0 20px; }
+        input[type="range"] { width: 100%; accent-color: #9a6db4; cursor: grab; }
+        input[type="range"]:active { cursor: grabbing; }
+        .meter-labels { display: flex; justify-content: space-between; color: #786d7b; font-size: 0.9rem; }
+        .meter-message { min-height: 3.3em; margin-top: 20px; font-weight: 700; color: #674b80; }
+        .end-face { font-size: 3.5rem; }
+
+        @keyframes bob {
+            0%, 100% { transform: rotate(-5deg) translateY(0); }
+            50% { transform: rotate(5deg) translateY(-8px); }
+        }
+
+        @media (max-width: 420px) {
+            main { padding: 30px 20px; }
+            .runaway-area { min-height: 150px; }
+            #yes-button { left: 0; }
+            #no-button { right: 0; }
+            button { padding-inline: 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
