@@ -93,7 +93,7 @@ p {
 
 .color-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 15px;
     margin: 25px 0;
 }
@@ -125,10 +125,6 @@ p {
 .btn-blue {
     background: linear-gradient(135deg, rgb(143, 176, 187), rgb(13, 13, 40));
 }
-.btn-burgundy {
-    background: linear-gradient(135deg, rgb(112, 35, 59), maroon);
-}
-
 .action-btn {
     display: block;
     width: 100%;

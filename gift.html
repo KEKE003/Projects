@@ -30,7 +30,6 @@
             <div class="color-grid">
                 <button class="color-btn btn-silver" onclick="pickColor('silver')" aria-label="Silver">Silver ✨</button>
                 <button class="color-btn btn-blue" onclick="pickColor('blue')" aria-label="Blue">Blue 💙</button>
-                <button class="color-btn btn-burgundy" onclick="pickColor('burgundy')" aria-label="Burgundy">Burgundy 🍷</button>
             </div>
         </div>
 
@@ -68,24 +67,24 @@
             <span class="emoji-big" aria-hidden="true">📱</span>
             <h1>Choose your phone</h1>
             <p>Your color pick: <strong id="phone-color-name">not selected</strong></p>
-            <p class="notice-text">Illustrations use your chosen color. Confirm actual color availability and today's price on Takealot.</p>
+            <p class="notice-text">Illustrations use your chosen color. Confirm actual color availability and today's price on iStore.</p>
 
             <div class="phone-options">
-                <button class="phone-option" id="phone-option-17" type="button" onclick="choosePhone('iphone17pro')" aria-pressed="false">
-                    <span class="phone-art" id="phone-art-17" aria-hidden="true"></span>
+                <button class="phone-option" id="phone-option-17-pro" type="button" onclick="choosePhone('iphone17pro')" aria-pressed="false">
+                    <span class="phone-art" id="phone-art-17-pro" aria-hidden="true"></span>
                     <span class="phone-option-name">iPhone 17 Pro</span>
-                    <span class="phone-option-detail">View current Takealot price</span>
+                    <span class="phone-option-detail">View on iStore</span>
                 </button>
-                <button class="phone-option" id="phone-option-18" type="button" onclick="choosePhone('iphone18pro')" aria-pressed="false">
-                    <span class="phone-art" id="phone-art-18" aria-hidden="true"></span>
-                    <span class="phone-option-name">iPhone 18 Pro</span>
-                    <span class="phone-option-detail">View current Takealot price</span>
+                <button class="phone-option" id="phone-option-17-pro-max" type="button" onclick="choosePhone('iphone17promax')" aria-pressed="false">
+                    <span class="phone-art" id="phone-art-17-pro-max" aria-hidden="true"></span>
+                    <span class="phone-option-name">iPhone 17 Pro Max</span>
+                    <span class="phone-option-detail">View on iStore</span>
                 </button>
             </div>
 
-            <p id="phone-selection-summary" class="selection-summary" aria-live="polite">Choose a model to prepare your Takealot link and selection email.</p>
-            <a id="takealot-buy-link" class="action-btn store-link" href="https://www.takealot.com/" target="_blank" rel="noopener noreferrer" onclick="confirmTakealotSearch(event)" hidden>View selected phone on Takealot 🛍️</a>
-            <p class="notice-text">Add your delivery and billing details, and pay securely on Takealot. This page never collects payment information.</p>
+            <p id="phone-selection-summary" class="selection-summary" aria-live="polite">Choose a model to prepare your iStore link and selection email.</p>
+            <a id="istore-buy-link" class="action-btn store-link" href="https://www.istore.co.za/iphone" target="_blank" rel="noopener noreferrer" hidden>View selected phone on iStore 🛍️</a>
+            <p class="notice-text">Add your delivery and billing details, and pay securely on iStore. This page never collects payment information.</p>
             <button class="action-btn btn-submit" id="notify-button" type="button" onclick="notifyProgrammer()" disabled>Email Keke my selection 📧</button>
             <p class="notice-text">Your email app will open with the selected model and color. Keke is notified only if you send it.</p>
             <button class="action-btn" type="button" onclick="openThankYouNote()">Open the thank-you note after ordering 💌</button>
@@ -114,7 +113,7 @@
                 <p>Giovanni Antonio Frugone, thank you so much for this incredibly thoughtful gift. Your generosity means more to me than I can put into words. Every time I use my new phone I’ll be reminded of your kindness and hard work, but most importantly YOU.</p>
                 <p>I’m so grateful. Truly I am!🥹</p>
                 <p class="note-signoff">With all my love,<br>Keke 💛</p>
-                <button class="action-btn" onclick="resetApp()">Back to the beginning ↩️</button>
+                <button class="action-btn" onclick="window.location.href='program.html'">Back to the program ↩️</button>
                 <span class="kiss-emoji" role="img" aria-label="Blowing a kiss">😘<span class="flying-kiss" aria-hidden="true">💋</span></span>
             </div>
         </div>

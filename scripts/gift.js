@@ -13,16 +13,31 @@ let selectedColorName = "";
 let selectedPhoneModel = "";
 let noButtonDodgeCount = 0;
 let bottleHideTimeout;
+let romanticAudioContext;
+let romanticMusicTimer;
+let romanticMusicStep = 0;
 const phoneCatalog = {
-    iphone17pro: { label: "iPhone 17 Pro", searchTerm: "Apple iPhone 17 Pro" },
-    iphone18pro: { label: "iPhone 18 Pro", searchTerm: "Apple iPhone 18 Pro" }
+    iphone17pro: {
+        label: "iPhone 17 Pro",
+        productUrl: "https://www.istore.co.za/shop-iphone-17-pro",
+        optionId: "17-pro",
+        artId: "17-pro"
+    },
+    iphone17promax: {
+        label: "iPhone 17 Pro Max",
+        productUrl: "https://www.istore.co.za/shop-iphone-17-pro-max",
+        optionId: "17-pro-max",
+        artId: "17-pro-max"
+    }
 };
 
 function renderPhoneIllustrations() {
-    const colors = { silver: "#c9cbd0", blue: "#426b95", burgundy: "#74263e" };
+    const colors = { silver: "#c9cbd0", blue: "#426b95" };
     const color = colors[selectedColorName] || colors.silver;
-    document.getElementById("phone-art-17").replaceChildren(createPhoneIllustration("iphone17pro", color));
-    document.getElementById("phone-art-18").replaceChildren(createPhoneIllustration("iphone18pro", color));
+    Object.entries(phoneCatalog).forEach(([model, phone]) => {
+        document.getElementById(`phone-art-${phone.artId}`)
+            .replaceChildren(createPhoneIllustration(model, color));
+    });
 }
 
 function createPhoneIllustration(model, color) {
@@ -78,8 +93,7 @@ function goToScreen(num) {
 function pickColor(name) {
     const palettes = {
         silver: { bg1: '#cfd9df', bg2: '#e2ebf0', accent: '#778899' },
-        blue: { bg1: '#89f7fe', bg2: '#66a6ff', accent: '#3478c7' },
-        burgundy: { bg1: '#6d263b', bg2: '#c06c84', accent: '#8f2945' }
+        blue: { bg1: '#89f7fe', bg2: '#66a6ff', accent: '#3478c7' }
     };
     const palette = palettes[name];
     if (!palette) return;
@@ -91,8 +105,7 @@ function pickColor(name) {
 
     const prettyNames = {
         silver: "Silver",
-        blue: "Blue",
-        burgundy: "Burgundy"
+        blue: "Blue"
     };
     document.getElementById('color-compliment').innerText = `${prettyNames[name]} is an amazing choice!`;
     document.getElementById('chosen-color-text').innerText = prettyNames[name];
@@ -108,34 +121,18 @@ function choosePhone(model) {
 
     selectedPhoneModel = model;
     Object.keys(phoneCatalog).forEach(phoneKey => {
-        const option = document.getElementById(`phone-option-${phoneKey === "iphone17pro" ? "17" : "18"}`);
+        const option = document.getElementById(`phone-option-${phoneCatalog[phoneKey].optionId}`);
         const isSelected = phoneKey === model;
         option.classList.toggle("selected", isSelected);
         option.setAttribute("aria-pressed", String(isSelected));
     });
 
-    const productUrl = new URL("https://www.takealot.com/all");
-    productUrl.searchParams.set("query", phone.searchTerm);
-    const buyLink = document.getElementById("takealot-buy-link");
-    buyLink.href = productUrl.toString();
+    const buyLink = document.getElementById("istore-buy-link");
+    buyLink.href = phone.productUrl;
     buyLink.hidden = false;
     document.getElementById("phone-selection-summary").textContent =
-        `Selected ${phone.label} in ${selectedColorName}. Takealot will show today's price and available finishes.`;
+        `Selected ${phone.label} in ${selectedColorName}. iStore will show today's price and available finishes.`;
     document.getElementById("notify-button").disabled = false;
-}
-
-function confirmTakealotSearch(event) {
-    const phone = phoneCatalog[selectedPhoneModel];
-    if (!phone || !selectedColorName) {
-        event.preventDefault();
-        return;
-    }
-
-    const color = selectedColorName.charAt(0).toUpperCase() + selectedColorName.slice(1);
-    const continueToTakealot = window.confirm(
-        `On Takealot, search for ${phone.label} in ${color}. Continue?`
-    );
-    if (!continueToTakealot) event.preventDefault();
 }
 
 function runAway() {
@@ -183,10 +180,65 @@ function openThankYouNote() {
     launchHeartEmojis();
 }
 
+function playRomanticMusic() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) {
+        console.error("Web Audio is not supported in this browser.");
+        return;
+    }
+
+    romanticAudioContext ??= new AudioContextClass();
+    const context = romanticAudioContext;
+    context.resume().then(() => {
+        if (romanticMusicTimer) return;
+
+        const notes = [
+            261.63, 329.63, 392, 493.88,
+            220, 261.63, 329.63, 392,
+            174.61, 220, 261.63, 329.63,
+            196, 246.94, 293.66, 329.63
+        ];
+        const playNote = () => {
+            const oscillator = context.createOscillator();
+            const volume = context.createGain();
+            const start = context.currentTime;
+            oscillator.type = "sine";
+            oscillator.frequency.value = notes[romanticMusicStep % notes.length];
+            volume.gain.setValueAtTime(0, start);
+            volume.gain.linearRampToValueAtTime(0.055, start + 0.16);
+            volume.gain.exponentialRampToValueAtTime(0.001, start + 1.7);
+            oscillator.connect(volume);
+            volume.connect(context.destination);
+            oscillator.start(start);
+            oscillator.stop(start + 1.75);
+            romanticMusicStep++;
+        };
+
+        playNote();
+        romanticMusicTimer = window.setInterval(playNote, 650);
+    }).catch(error => {
+        console.error("Could not start the thank-you music.", error);
+    });
+}
+
+function stopRomanticMusic() {
+    if (romanticMusicTimer) {
+        window.clearInterval(romanticMusicTimer);
+        romanticMusicTimer = undefined;
+    }
+    if (romanticAudioContext?.state === "running") {
+        romanticAudioContext.suspend().catch(error => {
+            console.error("Could not pause the thank-you music.", error);
+        });
+    }
+}
+
 function unwrapThankYouNote() {
     const bottle = document.getElementById("scroll-bottle");
     const scroll = document.getElementById("thank-you-scroll");
     if (bottle.getAttribute("aria-expanded") === "true") return;
+
+    playRomanticMusic();
 
     bottle.setAttribute("aria-expanded", "true");
     scroll.setAttribute("aria-hidden", "false");
@@ -204,7 +256,7 @@ function notifyProgrammer() {
     const body = encodeURIComponent(
         "Hi Keke!\n\nHere is my phone selection:\n" +
         `Model: ${phone.label}\nColor choice: ${selectedColorName}\n\n` +
-        "I will check the live listing and complete any billing and payment securely on Takealot. " +
+        "I will check the live listing and complete any billing and payment securely on iStore. " +
         "This message records my selection and is not an order or payment receipt."
     );
     window.location.href = `mailto:kekeletsobt@gmail.com?subject=${subject}&body=${body}`;
@@ -243,6 +295,8 @@ function resetApp() {
     noButtonDodgeCount = 0;
     clearTimeout(bottleHideTimeout);
 
+    stopRomanticMusic();
+
     const scrollBottle = document.getElementById("scroll-bottle");
     scrollBottle.hidden = false;
     scrollBottle.setAttribute("aria-expanded", "false");
@@ -255,11 +309,11 @@ function resetApp() {
         option.classList.remove("selected");
         option.setAttribute("aria-pressed", "false");
     });
-    document.getElementById("takealot-buy-link").hidden = true;
-    document.getElementById("takealot-buy-link").href = "https://www.takealot.com/";
+    document.getElementById("istore-buy-link").hidden = true;
+    document.getElementById("istore-buy-link").href = "https://www.istore.co.za/iphone";
     document.getElementById("notify-button").disabled = true;
     document.getElementById("phone-selection-summary").textContent =
-        "Choose a model to prepare your Takealot link and selection email.";
+        "Choose a model to prepare your iStore link and selection email.";
     document.getElementById("phone-color-name").textContent = "not selected";
     renderPhoneIllustrations();
 
