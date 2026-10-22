@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A tiny séance for closure: an animated, playful no-contact experience." />
+    <meta name="author" content="Kekeletso Nhlapo"> 
+    <meta property="og:title" content="Ghosted with Grace" />
+    <meta property="og:description" content="A little honesty, a little ceremony, and one firm nudge toward your own peace." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f3efdf" />
+    <title>Ghosted with Grace — A Tiny Séance for Closure</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c5415e'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='54' fill='%23f3efdf'%3Eg%3C/text%3E%3C/svg%3E" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles/ghostig.css">
+    <script src="scripts/ghosting.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Ghosted with Grace">
+          <span class="brand-mark" aria-hidden="true">g</span>
+          <span>ghosted with grace</span>
+        </div>
+        <span class="top-note">A tiny séance for closure</span>
+      </header>
+
+      <div id="experience">
+        <div class="flow-progress" aria-label="Experience progress">
+          <div class="flow-progress-copy">
+            <span class="step-count">Step <span id="stepNumber">01</span> of 05</span>
+            <span class="step-prompt" id="stepPrompt">First, the honest message.</span>
+          </div>
+          <div class="flow-progress-track" id="flowProgress" role="progressbar" aria-label="Progress through the experience" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+            <span class="flow-progress-fill" id="flowProgressFill"></span>
+          </div>
+        </div>
+        <div class="page-wrap">
+          <section class="flow-page" id="page-message" aria-label="The message">
+            <section class="hero" aria-labelledby="hero-title">
+              <div class="hero-kicker eyebrow">A no-contact dispatch</div>
+              <h1 class="step-heading" id="hero-title" tabindex="-1">I’m not<br /><span>that into</span> you.</h1>
+              <p class="hero-deck">I should have said it directly. This is your clear answer, with no mystery left to decode.</p>
+              <div class="hero-stamp" aria-hidden="true"><span><strong>NO</strong>more<br />decoding</span></div>
+            </section>
+            <article class="panel message-panel" data-testid="ghosting-message">
+              <div class="panel-index eyebrow">01 / The message</div>
+              <h2>I’m just not that into you.</h2>
+              <p class="message-copy">
+                Hey... I don’t want to keep talking or dating. <strong>Please stop texting me.</strong> No, I’m not looking for another conversation about it. I wish you well, but I’m moving on.
+              </p>
+              <div class="signature">— me, finally being direct</div>
+            </article>
+            <div class="step-navigation">
+              <span class="step-prompt">Ready to hear my best guess why?</span>
+              <button class="step-button next-button" type="button" data-next-page="1" data-testid="next-reasons">Take a guess <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+
+          <section class="flow-page" id="page-reasons" aria-label="Take a guess" hidden>
+            <article class="panel reason-panel">
+              <div class="panel-index eyebrow">02 / Take a guess</div>
+              <h2 class="step-heading" tabindex="-1">Why am I not that into you?</h2>
+              <p>Pick any that feel possible. None of these is a verdict on your worth.</p>
+              <div class="reason-list" role="group" aria-label="Take a guess why I am not that into you">
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="Talking to you is like talking to a brick wall" data-testid="reason-0">Talking to you is like talking to a brick wall</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="I don’t really do nonchalant" data-testid="reason-1">I don’t really do nonchalant</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="I can’t like the things you like even if I tried" data-testid="reason-2">I can’t like the things you like even if I tried</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="Looking for more than just looks" data-testid="reason-3">Looking for more than just looks</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="Waiting for your text is like waiting for rain in a draught" data-testid="reason-4">Waiting for your text is like waiting for rain in a draught</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="I'm bored" data-testid="reason-5">I'm bored</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="I thought I could do this... I can't" data-testid="reason-6">I thought I could do this... I can't</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="I have had enough" data-testid="reason-7">I have had enough</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="I don't love you 3000" data-testid="reason-8">I don't love you 3000</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="Hhmmm... the mellinium it is!" data-testid="reason-9">Hhmmm... the mellinium it is!</button>
+                <button class="reason-chip" type="button" aria-pressed="false" data-reason="All of the above" data-all-reasons="true" data-testid="reason-10">All of the above</button>
+              </div>
+              <div class="reason-foot" id="reasonSummary" aria-live="polite" data-testid="reason-summary">
+                No explanation makes being ignored feel great. Still, it is not a measure of you.
+              </div>
+            </article>
+            <div class="step-navigation">
+              <button class="step-button back-button" type="button" data-previous-page="0">← Back</button>
+              <span class="step-prompt">Let’s check the emotional weather.</span>
+              <button class="step-button next-button" type="button" data-next-page="2" data-testid="next-scale">Next: the scale <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+
+          <section class="flow-page" id="page-scale" aria-label="Emotional scale" hidden>
+            <article class="panel meter-panel">
+              <div class="panel-index eyebrow">03 / The emotional weather</div>
+              <h2 class="step-heading" tabindex="-1">How do you think I feel?</h2>
+              <p class="meter-note">Move the slider up to see where my feelings land.</p>
+              <div class="meter-layout">
+                <div>
+                  <div class="meter-readout" aria-live="polite" data-testid="meter-readout">
+                    <span class="readout-number" id="meterPercent">0% on the emotional scale</span>
+                    <span class="readout-text" id="meterMessage" data-testid="meter-message">They care… impressively little.</span>
+                  </div>
+                  <p class="meter-note" id="meterDetail" data-testid="meter-detail">Like, “forgot this tab was open” little.</p>
+                </div>
+                <div class="meter-control">
+                  <div class="meter-slider-wrap">
+                    <div class="meter-rail" aria-hidden="true">
+                      <span class="meter-fill" id="meterFill"></span>
+                      <span class="meter-ghost" id="meterGhost">👻</span>
+                    </div>
+                    <input type="range" class="range-track" id="emotionalMeter" min="0" max="100" step="1" value="0" aria-label="Emotional meter, from I don't really care at all to My loss" aria-valuetext="I don't really care at all" data-testid="emotional-meter" />
+                  </div>
+                  <div class="meter-labels" aria-hidden="true">
+                    <span>My loss</span>
+                    <span>I don’t really<br />care at all</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <div class="step-navigation">
+              <button class="step-button back-button" type="button" data-previous-page="1">← Back</button>
+              <span class="step-prompt">And now, a sincere wish for what comes next.</span>
+              <button class="step-button next-button" type="button" data-next-page="3" data-testid="next-wishes">Next: your future <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+
+          <section class="flow-page" id="page-wishes" aria-label="Good wishes" hidden>
+            <article class="panel wish-panel">
+              <div class="panel-index eyebrow">04 / Your next chapter</div>
+              <h2 class="step-heading" tabindex="-1">I hope the next one feels easy.</h2>
+              <p class="wish-text">
+                I hope you find someone who meets your effort with effort, your honesty with honesty, and your softness with care. <strong>Good things are still ahead of you.</strong>
+              </p>
+              <div class="wish-signoff">Truly. Go be adored.</div>
+              <div class="wish-sun" aria-hidden="true"></div>
+            </article>
+            <div class="step-navigation">
+              <button class="step-button back-button" type="button" data-previous-page="2">← Back</button>
+              <span class="step-prompt">One last promise to make, then you can move on.</span>
+              <button class="step-button next-button" type="button" data-next-page="4" data-testid="next-boundary">One last thing <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+
+          <section class="flow-page" id="page-boundary" aria-label="The no-contact promise" hidden>
+            <section class="question-wrap">
+              <div class="question-panel">
+                <div>
+                  <div class="panel-index eyebrow">05 / The final question</div>
+                  <h2 class="step-heading" tabindex="-1">Can you stop texting me?</h2>
+                  <p>No check-ins. No “one last thing.” Please stop texting me and give me space.</p>
+                </div>
+                <div class="choice-zone" id="choiceZone" data-testid="choice-zone" aria-describedby="noMessage">
+                  <button class="choice-button no-button" id="noButton" type="button" aria-label="No, wait, I might contact them" aria-controls="noMessage" data-testid="no-button">No, wait...</button>
+                  <button class="choice-button fine-button" id="fineButton" type="button" data-testid="fine-button">Fine</button>
+                  <span class="attempt-note" id="noMessage" role="status" aria-live="polite" data-testid="no-message" hidden></span>
+                </div>
+              </div>
+            </section>
+            <div class="step-navigation">
+              <button class="step-button back-button" type="button" data-previous-page="3">← Back</button>
+              <span class="step-prompt">Choose peace. “Fine” closes the séance.</span>
+            </div>
+          </section>
+
+          <footer class="footer-note">This trial subscription has expired. DO NOT renew!</footer>
+        </div>
+      </div>
+
+      <section class="celebration" id="celebration" aria-live="polite" hidden>
+        <div class="confetti-field" id="confettiField" aria-hidden="true"></div>
+        <div class="disco-lights" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="celebration-inner">
+          <div class="eyebrow celebration-eyebrow">The haunting is over</div>
+          <div class="emoji-duo" role="img" aria-label="Dancing and crying with relief">🕺 😭</div>
+          <h1 id="celebrationTitle" tabindex="-1">THANK<br />GOODNESS</h1>
+          <p class="celebration-copy">You chose your peace. The urge can pass through without getting a reply.</p>
+          <div class="celebration-track">
+            <div class="eyebrow">Celebrate good times</div>
+            <p class="soundtrack-note">Your celebration soundtrack plays while you dance it out.</p>
+            <button class="soundtrack-control" id="soundtrackToggle" type="button" data-testid="soundtrack-toggle">Pause soundtrack</button>
+            <p class="soundtrack-status" id="soundtrackStatus" role="status" aria-live="polite">The soundtrack starts with the celebration.</p>
+          </div>
+          <button class="restart-button" id="restartButton" type="button" data-testid="restart-button">Run it back</button>
+        </div>
+      </section>
+    </main>
+    
