@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7e5dc">
+    <meta name="description" content="Do you like me or not?!">
+    <meta name="author" content="Kekeletso Nhlapo">
+    <title>Kekeletso's Dating Program 💌</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/program.css">
+    <script src="scripts/program.js" defer></script>
+</head>
+<body>
+    <main class="app-shell">
+        <section class="screen active" id="application-screen" aria-labelledby="application-title">
+            <p class="eyebrow">KEKELETSO'S PROGRAM</p>
+            <span class="hero-icon" aria-hidden="true">💌</span>
+            <h1 id="application-title">Either you get with the program or get off the program</h1>
+            <p class="intro-copy">Fill in your details to receive your very own official program update.</p>
+
+            <form id="application-form">
+                <div class="field">
+                    <label for="first-name">Name</label>
+                    <input id="first-name" name="firstName" autocomplete="given-name" required maxlength="60">
+                </div>
+                <div class="field">
+                    <label for="last-name">Last name</label>
+                    <input id="last-name" name="lastName" autocomplete="family-name" required maxlength="60">
+                </div>
+                <div class="field">
+                    <label for="age">Age</label>
+                    <input id="age" name="age" type="number" inputmode="numeric" min="23" max="120" required>
+                </div>
+                <p class="access-warning" id="access-warning" role="alert" hidden>
+                    Access denied. Please enter Giovanni Frugone or Gio Frugone to continue.
+                </p>
+                <button class="button button-primary" type="submit">Submit✨</button>
+            </form>
+        </section>
+
+        <section class="screen" id="elimination-screen" aria-labelledby="elimination-title" hidden>
+            <p class="eyebrow">THE COMMITTEE HAS MADE A DECISION</p>
+            <span class="hero-icon" aria-hidden="true">📋</span>
+            <h1 id="elimination-title">We have an update<span id="applicant-name"></span>...</h1>
+            <p class="lead">You have officially been kicked OFF the program.</p>
+            <div class="reasons">
+                <h2> Why you've been eliminated </h2>
+                <ul>
+                    <li>It seems like you want to be chased. Quite frankly, that is not something Keke is willing to do (She hates running).</li>
+                    <li>It takes an unreasonable amount of time for you to text Keke back. I get you're <strong>BUSY</strong> but so is she.</li>
+                    <li>Waiting for you to text back is like waiting for rain in a drought (Keke doesn't like being left hanging).</li>
+                    <li>Keke wants to feel WANTED and INVOLVED unfortunately she DOESN'T.</li>
+                    <li>Not texting for the <strong>WHOLE DAY</strong>?!!! That is not the communication standard this program is looking for.</li>
+                </ul>
+            </div>
+            <p class="question">Would you like to appeal, or accept your evacuation?</p>
+            <div class="button-stack">
+                <button class="button button-primary" id="appeal-button" type="button">I'd like to appeal 🥺</button>
+                <button class="button button-secondary" id="evacuation-button" type="button">I accept the evacuation</button>
+            </div>
+        </section>
+
+        <section class="screen" id="appeal-screen" aria-labelledby="appeal-title" hidden>
+            <p class="eyebrow">APPEALS DESK</p>
+            <span class="hero-icon" aria-hidden="true">🫶</span>
+            <h1 id="appeal-title">How would you like to appeal?</h1>
+            <p class="intro-copy">Choose your next move wisely. The committee is watching.</p>
+            <div class="appeal-options">
+                <button class="button button-secondary" id="forget-button" type="button">Forget it</button>
+                <button class="button button-apology" id="apology-button" type="button">I AM SO SORRY!!!</button>
+                <a class="button button-primary gift-button" id="gift-button" href="gift.html">Reconciliation gift 🎁</a>
+            </div>
+            <div class="bird-note" id="bird-note" role="status" aria-live="polite" hidden>
+                <svg class="blue-bird" viewBox="0 0 100 70" role="img" aria-labelledby="bird-title">
+                    <title id="bird-title">A little blue bird flying toward the gift option</title>
+                    <path d="M10 40c13-17 29-20 44-10 9-11 23-13 35-8-8 3-12 8-14 13 9 1 16 6 20 14-12-4-23-4-34 0-15 7-32 5-51-9Z" fill="#3685bd"/>
+                    <path d="m28 35 13-22 5 25M48 31l23-18-8 25" fill="#76b9e5"/>
+                    <circle cx="77" cy="28" r="2.5" fill="#18334b"/>
+                    <path d="m87 32 10 3-10 4" fill="#f5b64b"/>
+                </svg>
+                <div class="bird-banner">A little birdie told me she really loves gifts...</div>
+                <span class="banner-arrow" aria-hidden="true">↑</span>
+            </div>
+        </section>
+
+        <section class="screen farewell-screen" id="farewell-screen" aria-labelledby="farewell-title" hidden>
+            <p class="eyebrow">END OF TRANSMISSION</p>
+            <p class="bye-pixel" id="bye-message" aria-live="polite">BYE!</p>
+            <div class="skeleton-wrap" id="skeleton-face" hidden>
+                <div class="pixel-skull" role="img" aria-label="A pixelated dead skeleton face">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <h1 id="farewell-title" tabindex="-1">The evacuation is complete.</h1>
+                <p>The committee wishes you well. ☠️</p>
+                <div class="receipt-prompt">
+                    <p class="receipt-note">Your decision has been recorded. Send Keke your answers by email.</p>
+                    <a class="button button-primary receipt-link" id="farewell-receipt-link" href="mailto:kekeletsobt@gmail.com">Send my answers by email 📧</a>
+                    <p class="receipt-disclaimer">Your email app will open a prefilled message. Tap Send to deliver it to Keke.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="receipt-prompt appeal-receipt-prompt" id="appeal-receipt-prompt" hidden>
+            <p class="receipt-note">Your decision has been recorded. Send Keke your answers by email.</p>
+            <a class="button button-primary receipt-link" id="appeal-receipt-link" href="mailto:kekeletsobt@gmail.com">Send my answers by email 📧</a>
+            <p class="receipt-disclaimer">Your email app will open a prefilled message. Tap Send to deliver it to Keke.</p>
+        </div>
+    </main>
+
+    <dialog class="apology-dialog" id="apology-dialog" aria-labelledby="letter-title">
+        <div class="letter" id="apology-letter">
+            <div class="letter-content">
+                <p class="eyebrow">A LETTER OF APOLOGY?</p>
+                <h2 id="letter-title">Uhhhhh...</h2>
+                <p>Keke has heard that before.</p>
+                <p>Unfortunately, she is tired of the lack of effort.</p>
+                <p class="letter-signoff">The committee 💌</p>
+            </div>
+        </div>
+    </dialog>
+</body>
+</html>
