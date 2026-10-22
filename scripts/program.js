@@ -1,7 +1,6 @@
 const applicationForm = document.querySelector("#application-form");
 const applicantName = document.querySelector("#applicant-name");
 const accessWarning = document.querySelector("#access-warning");
-const receiptLinks = document.querySelectorAll(".receipt-link");
 const screens = document.querySelectorAll(".screen");
 const byeMessage = document.querySelector("#bye-message");
 const skeletonFace = document.querySelector("#skeleton-face");
@@ -9,19 +8,13 @@ const apologyDialog = document.querySelector("#apology-dialog");
 const apologyButton = document.querySelector("#apology-button");
 const birdNote = document.querySelector("#bird-note");
 const giftButton = document.querySelector("#gift-button");
-const appealReceiptPrompt = document.querySelector("#appeal-receipt-prompt");
+const farewellStamp = document.querySelector("#farewell-stamp");
+let apologyTimeout;
+let reviewTimeout;
+let birdLandingTimeout;
 
 function normalizeName(value) {
     return value.trim().replace(/\s+/g, " ").toLocaleLowerCase();
-}
-
-function makeReceiptHref(firstName, lastName, age) {
-    const subject = encodeURIComponent("Dating program receipt");
-    const body = encodeURIComponent(
-        "Hi Kekeletso,\n\nHere are my answers:\n" +
-        `Name: ${firstName}\nLast name: ${lastName}\nAge: ${age}\n`
-    );
-    return `mailto:kekeletsobt@gmail.com?subject=${subject}&body=${body}`;
 }
 
 for (const field of applicationForm.querySelectorAll("input")) {
@@ -48,7 +41,6 @@ applicationForm.addEventListener("submit", (event) => {
     const formData = new FormData(applicationForm);
     const firstName = String(formData.get("firstName")).trim();
     const lastName = String(formData.get("lastName")).trim();
-    const age = String(formData.get("age")).trim();
     const allowedFirstName = ["giovanni", "gio"].includes(normalizeName(firstName));
 
     if (!allowedFirstName || normalizeName(lastName) !== "frugone") {
@@ -59,12 +51,12 @@ applicationForm.addEventListener("submit", (event) => {
 
     const fullName = [firstName, lastName].filter(Boolean).join(" ");
     applicantName.textContent = fullName ? `, ${fullName}` : "";
-    const receiptHref = makeReceiptHref(firstName, lastName, age);
-    for (const receiptLink of receiptLinks) {
-        receiptLink.href = receiptHref;
-    }
-    showScreen("elimination-screen");
-    document.querySelector("#appeal-button").focus();
+    showScreen("committee-screen");
+    const reviewDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 100 : 2000;
+    reviewTimeout = window.setTimeout(() => {
+        showScreen("elimination-screen");
+        document.querySelector("#appeal-button").focus();
+    }, reviewDuration);
 });
 
 document.querySelector("#appeal-button").addEventListener("click", () => {
@@ -73,10 +65,12 @@ document.querySelector("#appeal-button").addEventListener("click", () => {
 });
 
 document.querySelector("#evacuation-button").addEventListener("click", () => {
+    farewellStamp.textContent = "EVACUATION ACCEPTED";
     showFarewell(false);
 });
 
 document.querySelector("#forget-button").addEventListener("click", () => {
+    farewellStamp.textContent = "CASE CLOSED";
     showFarewell(true);
 });
 
@@ -95,6 +89,18 @@ function showFarewell(skipBye) {
     }
 }
 
+apologyDialog.addEventListener("close", () => {
+    window.clearTimeout(apologyTimeout);
+    birdNote.hidden = false;
+    birdNote.classList.remove("landed");
+    window.clearTimeout(birdLandingTimeout);
+    const landingDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 3500;
+    birdLandingTimeout = window.setTimeout(() => {
+        birdNote.classList.add("landed");
+    }, landingDelay);
+    giftButton.focus();
+});
+
 apologyDialog.addEventListener("cancel", (event) => {
     event.preventDefault();
 });
@@ -102,10 +108,5 @@ apologyDialog.addEventListener("cancel", (event) => {
 apologyButton.addEventListener("click", () => {
     birdNote.hidden = true;
     apologyDialog.showModal();
-    window.setTimeout(() => {
-        apologyDialog.close();
-        birdNote.hidden = false;
-        appealReceiptPrompt.hidden = false;
-        giftButton.focus();
-    }, 10000);
+    apologyTimeout = window.setTimeout(() => apologyDialog.close(), 5000);
 });

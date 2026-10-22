@@ -42,6 +42,14 @@
             </form>
         </section>
 
+        <section class="screen committee-screen" id="committee-screen" aria-labelledby="committee-title" aria-live="polite" hidden>
+            <p class="eyebrow">KEKELETSO'S PROGRAM</p>
+            <div class="committee-seal" aria-hidden="true">K</div>
+            <h1 id="committee-title">The committee is reviewing your application...</h1>
+            <div class="review-meter" aria-hidden="true"><span></span></div>
+            <p class="review-caption">Please remain dramatically patient.</p>
+        </section>
+
         <section class="screen" id="elimination-screen" aria-labelledby="elimination-title" hidden>
             <p class="eyebrow">THE COMMITTEE HAS MADE A DECISION</p>
             <span class="hero-icon" aria-hidden="true">📋</span>
@@ -67,23 +75,24 @@
         <section class="screen" id="appeal-screen" aria-labelledby="appeal-title" hidden>
             <p class="eyebrow">APPEALS DESK</p>
             <span class="hero-icon" aria-hidden="true">🫶</span>
-            <h1 id="appeal-title">How would you like to appeal?</h1>
+            <h1 id="appeal-title" tabindex="-1">How would you like to appeal?</h1>
             <p class="intro-copy">Choose your next move wisely. The committee is watching.</p>
             <div class="appeal-options">
                 <button class="button button-secondary" id="forget-button" type="button">Forget it</button>
-                <button class="button button-apology" id="apology-button" type="button">I AM SO SORRY!!!</button>
+                <button class="button button-apology" id="apology-button" type="button">I AM SORRY!</button>
+                <div class="bird-note" id="bird-note" role="status" aria-live="polite" hidden>
+                    <div class="bird-companion">
+                        <div class="bird-speech">A little birdie told me she likes gifts!</div>
+                        <svg class="blue-bird" viewBox="0 0 100 70" role="img" aria-labelledby="bird-title">
+                            <title id="bird-title">A little blue bird flying to perch beside the gift option</title>
+                            <path d="M10 40c13-17 29-20 44-10 9-11 23-13 35-8-8 3-12 8-14 13 9 1 16 6 20 14-12-4-23-4-34 0-15 7-32 5-51-9Z" fill="#3685bd"/>
+                            <path d="m28 35 13-22 5 25M48 31l23-18-8 25" fill="#76b9e5"/>
+                            <circle cx="77" cy="28" r="2.5" fill="#18334b"/>
+                            <path d="m87 32 10 3-10 4" fill="#f5b64b"/>
+                        </svg>
+                    </div>
+                </div>
                 <a class="button button-primary gift-button" id="gift-button" href="gift.html">Reconciliation gift 🎁</a>
-            </div>
-            <div class="bird-note" id="bird-note" role="status" aria-live="polite" hidden>
-                <svg class="blue-bird" viewBox="0 0 100 70" role="img" aria-labelledby="bird-title">
-                    <title id="bird-title">A little blue bird flying toward the gift option</title>
-                    <path d="M10 40c13-17 29-20 44-10 9-11 23-13 35-8-8 3-12 8-14 13 9 1 16 6 20 14-12-4-23-4-34 0-15 7-32 5-51-9Z" fill="#3685bd"/>
-                    <path d="m28 35 13-22 5 25M48 31l23-18-8 25" fill="#76b9e5"/>
-                    <circle cx="77" cy="28" r="2.5" fill="#18334b"/>
-                    <path d="m87 32 10 3-10 4" fill="#f5b64b"/>
-                </svg>
-                <div class="bird-banner">A little birdie told me she really loves gifts...</div>
-                <span class="banner-arrow" aria-hidden="true">↑</span>
             </div>
         </section>
 
@@ -104,19 +113,10 @@
                 </div>
                 <h1 id="farewell-title" tabindex="-1">The evacuation is complete.</h1>
                 <p>The committee wishes you well. ☠️</p>
-                <div class="receipt-prompt">
-                    <p class="receipt-note">Your decision has been recorded. Send Keke your answers by email.</p>
-                    <a class="button button-primary receipt-link" id="farewell-receipt-link" href="mailto:kekeletsobt@gmail.com">Send my answers by email 📧</a>
-                    <p class="receipt-disclaimer">Your email app will open a prefilled message. Tap Send to deliver it to Keke.</p>
-                </div>
+                <div class="case-stamp" id="farewell-stamp">CASE CLOSED</div>
             </div>
         </section>
 
-        <div class="receipt-prompt appeal-receipt-prompt" id="appeal-receipt-prompt" hidden>
-            <p class="receipt-note">Your decision has been recorded. Send Keke your answers by email.</p>
-            <a class="button button-primary receipt-link" id="appeal-receipt-link" href="mailto:kekeletsobt@gmail.com">Send my answers by email 📧</a>
-            <p class="receipt-disclaimer">Your email app will open a prefilled message. Tap Send to deliver it to Keke.</p>
-        </div>
     </main>
 
     <dialog class="apology-dialog" id="apology-dialog" aria-labelledby="letter-title">
