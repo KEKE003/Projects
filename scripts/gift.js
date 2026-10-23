@@ -13,9 +13,10 @@ let selectedColorName = "";
 let selectedPhoneModel = "";
 let noButtonDodgeCount = 0;
 let bottleHideTimeout;
-let romanticAudioContext;
-let romanticMusicTimer;
-let romanticMusicStep = 0;
+const thankYouSoundtrack = new Audio("assets/thank-you-baby.mp3");
+thankYouSoundtrack.loop = true;
+thankYouSoundtrack.preload = "auto";
+thankYouSoundtrack.volume = 0.8;
 const phoneCatalog = {
     iphone17pro: {
         label: "iPhone 17 Pro",
@@ -181,56 +182,14 @@ function openThankYouNote() {
 }
 
 function playRomanticMusic() {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) {
-        console.error("Web Audio is not supported in this browser.");
-        return;
-    }
-
-    romanticAudioContext ??= new AudioContextClass();
-    const context = romanticAudioContext;
-    context.resume().then(() => {
-        if (romanticMusicTimer) return;
-
-        const notes = [
-            261.63, 329.63, 392, 493.88,
-            220, 261.63, 329.63, 392,
-            174.61, 220, 261.63, 329.63,
-            196, 246.94, 293.66, 329.63
-        ];
-        const playNote = () => {
-            const oscillator = context.createOscillator();
-            const volume = context.createGain();
-            const start = context.currentTime;
-            oscillator.type = "sine";
-            oscillator.frequency.value = notes[romanticMusicStep % notes.length];
-            volume.gain.setValueAtTime(0, start);
-            volume.gain.linearRampToValueAtTime(0.055, start + 0.16);
-            volume.gain.exponentialRampToValueAtTime(0.001, start + 1.7);
-            oscillator.connect(volume);
-            volume.connect(context.destination);
-            oscillator.start(start);
-            oscillator.stop(start + 1.75);
-            romanticMusicStep++;
-        };
-
-        playNote();
-        romanticMusicTimer = window.setInterval(playNote, 650);
-    }).catch(error => {
+    thankYouSoundtrack.play().catch(error => {
         console.error("Could not start the thank-you music.", error);
     });
 }
 
 function stopRomanticMusic() {
-    if (romanticMusicTimer) {
-        window.clearInterval(romanticMusicTimer);
-        romanticMusicTimer = undefined;
-    }
-    if (romanticAudioContext?.state === "running") {
-        romanticAudioContext.suspend().catch(error => {
-            console.error("Could not pause the thank-you music.", error);
-        });
-    }
+    thankYouSoundtrack.pause();
+    thankYouSoundtrack.currentTime = 0;
 }
 
 function unwrapThankYouNote() {
