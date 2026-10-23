@@ -259,7 +259,14 @@ function notifyProgrammer() {
         "I will check the live listing and complete any billing and payment securely on iStore. " +
         "This message records my selection and is not an order or payment receipt."
     );
-    window.location.href = `mailto:kekeletsobt@gmail.com?subject=${subject}&body=${body}`;
+    const emailLink = document.createElement("a");
+    emailLink.href = `mailto:kekeletsobt@gmail.com?subject=${subject}&body=${body}`;
+    emailLink.target = "_blank";
+    emailLink.rel = "noopener noreferrer";
+    emailLink.hidden = true;
+    document.body.appendChild(emailLink);
+    emailLink.click();
+    emailLink.remove();
 }
 
 function launchHeartEmojis() {
